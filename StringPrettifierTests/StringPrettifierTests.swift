@@ -10,25 +10,17 @@ import XCTest
 @testable import StringPrettifier
 
 class StringPrettifierTests: XCTestCase {
+    let testString = "I am a test string. I have puncutaions in me. Some with spaces and others without, look I also have a link in me: www.myExampleLink.com."
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    func testStringBreakLines() throws {
+        XCTAssertFalse(testString.contains("I am a test string.\n\n"))
+        XCTAssertFalse(testString.contains("I have puncutaions in me.\n\n"))
+        let formattedString = StringPrettifier.prettify(testString)
+        XCTAssert(formattedString.mutableString.contains("I am a test string.\n\n"))
+        XCTAssert(formattedString.mutableString.contains("I have puncutaions in me.\n\n"))
+        
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 
 }
